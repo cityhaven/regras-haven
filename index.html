@@ -24,568 +24,375 @@
             --accent-red: #f87171;
             --accent-yellow: #fbbf24;
             --accent-blue: #60a5fa;
+            --accent-orange: #fb923c;
+            --accent-pink: #f472b6;
+            --accent-cyan: #22d3ee;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'Outfit', sans-serif;
-            background: var(--bg-deep);
-            color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
+            background: var(--bg-deep); color: var(--text);
+            min-height: 100vh; overflow-x: hidden;
         }
-
-        /* === BACKGROUND EFFECTS === */
         body::before {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
+            content: ''; position: fixed; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background:
                 radial-gradient(ellipse at 20% 0%, rgba(70, 26, 128, 0.15) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 100%, rgba(70, 26, 128, 0.1) 0%, transparent 50%);
-            z-index: 0;
-            animation: bgDrift 20s ease-in-out infinite alternate;
+            z-index: 0; animation: bgDrift 20s ease-in-out infinite alternate;
         }
-
         @keyframes bgDrift {
             0% { transform: translate(0, 0) rotate(0deg); }
             100% { transform: translate(-2%, -1%) rotate(1deg); }
         }
-
-        /* === NOISE OVERLAY === */
         body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
+            content: ''; position: fixed; inset: 0;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-            z-index: 0;
-            pointer-events: none;
+            z-index: 0; pointer-events: none;
         }
-
-        /* === HERO === */
         .hero {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 80px 20px 50px;
-            border-bottom: 1px solid var(--border);
+            position: relative; z-index: 1; text-align: center;
+            padding: 80px 20px 50px; border-bottom: 1px solid var(--border);
         }
-
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            padding: 8px 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 100px; padding: 8px 20px;
+            font-size: 0.75rem; font-weight: 500; color: var(--text-muted);
+            letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 30px; backdrop-filter: blur(10px);
         }
-
-        .hero-badge i {
-            color: var(--primary-light);
-            font-size: 0.65rem;
-        }
-
+        .hero-badge i { color: var(--primary-light); font-size: 0.65rem; }
         .hero h1 {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 1;
-            margin-bottom: 16px;
+            font-weight: 900; letter-spacing: -2px; line-height: 1; margin-bottom: 16px;
         }
-
         .hero h1 span {
             background: linear-gradient(135deg, var(--primary-light), #9b6ddb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            font-weight: 300;
-            max-width: 500px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat .number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary-light);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .hero-stat .label {
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 4px;
-        }
-
-        /* === CONTAINER === */
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 50px 20px 80px;
-        }
-
-        /* === TABLE OF CONTENTS === */
-        .toc {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 50px;
-            backdrop-filter: blur(10px);
-        }
-
-        .toc h3 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text-dim);
-            margin-bottom: 20px;
-        }
-
-        .toc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 8px;
-        }
-
-        .toc a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-muted);
-            text-decoration: none;
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            font-weight: 400;
-            transition: all 0.2s;
-        }
-
-        .toc a:hover {
-            background: var(--bg-card-hover);
-            color: var(--text);
-            transform: translateX(4px);
-        }
-
-        .toc a .toc-num {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--primary-light);
-            font-weight: 500;
-            min-width: 22px;
-        }
-
-        /* === SECTIONS === */
-        .rule-section {
-            margin-bottom: 40px;
-            animation: fadeUp 0.5s ease both;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 20px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .section-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-
+        .hero p { color: var(--text-muted); font-size: 1.05rem; font-weight: 300; max-width: 550px; margin: 0 auto; line-height: 1.6; }
+        .hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
+        .hero-stat { text-align: center; }
+        .hero-stat .number { font-size: 1.8rem; font-weight: 800; color: var(--primary-light); font-family: 'JetBrains Mono', monospace; }
+        .hero-stat .label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; }
+        .container { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 50px 20px 80px; }
+        .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin-bottom: 50px; backdrop-filter: blur(10px); }
+        .toc h3 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-dim); margin-bottom: 20px; }
+        .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px; }
+        .toc a { display: flex; align-items: center; gap: 10px; color: var(--text-muted); text-decoration: none; padding: 10px 14px; border-radius: 10px; font-size: 0.85rem; font-weight: 400; transition: all 0.2s; }
+        .toc a:hover { background: var(--bg-card-hover); color: var(--text); transform: translateX(4px); }
+        .toc a .toc-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--primary-light); font-weight: 500; min-width: 22px; }
+        .rule-section { margin-bottom: 40px; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+        .section-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
         .section-icon.purple { background: rgba(70, 26, 128, 0.2); color: var(--primary-light); }
         .section-icon.green { background: rgba(52, 211, 153, 0.15); color: var(--accent-green); }
         .section-icon.red { background: rgba(248, 113, 113, 0.15); color: var(--accent-red); }
         .section-icon.yellow { background: rgba(251, 191, 36, 0.15); color: var(--accent-yellow); }
         .section-icon.blue { background: rgba(96, 165, 250, 0.15); color: var(--accent-blue); }
-
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .section-subtitle {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 2px;
-        }
-
-        /* === RULES LIST === */
-        .rules-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .rules-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 14px 18px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            font-size: 0.92rem;
-            line-height: 1.55;
-            color: var(--text-muted);
-            transition: all 0.2s;
-        }
-
-        .rules-list li:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(255, 255, 255, 0.1);
-            color: var(--text);
-        }
-
-        .rule-num {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: var(--primary-light);
-            background: rgba(70, 26, 128, 0.15);
-            padding: 3px 8px;
-            border-radius: 6px;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        /* === PENALTY BOX === */
-        .penalty-box {
-            margin-top: 30px;
-            background: rgba(248, 113, 113, 0.05);
-            border: 1px solid rgba(248, 113, 113, 0.15);
-            border-radius: 14px;
-            padding: 24px;
-        }
-
-        .penalty-box h4 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent-red);
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .penalty-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-        }
-
-        .penalty-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            font-size: 0.82rem;
-        }
-
-        .penalty-item .tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-weight: 500;
-            flex-shrink: 0;
-        }
-
+        .section-icon.orange { background: rgba(251, 146, 60, 0.15); color: var(--accent-orange); }
+        .section-icon.pink { background: rgba(244, 114, 182, 0.15); color: var(--accent-pink); }
+        .section-icon.cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); }
+        .section-title { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.5px; }
+        .section-subtitle { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-top: 2px; }
+        .rules-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .rules-list li { display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); transition: all 0.2s; }
+        .rules-list li:hover { background: var(--bg-card-hover); border-color: rgba(255, 255, 255, 0.1); color: var(--text); }
+        .rules-list li strong { color: var(--text); }
+        .rule-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 500; color: var(--primary-light); background: rgba(70, 26, 128, 0.15); padding: 3px 8px; border-radius: 6px; flex-shrink: 0; margin-top: 2px; }
+        .sub-title { font-size: 0.95rem; font-weight: 700; color: var(--text); margin: 20px 0 10px; border-left: 3px solid var(--primary-light); padding-left: 12px; }
+        .important-box { margin-top: 16px; margin-bottom: 16px; background: rgba(251, 191, 36, 0.05); border: 1px solid rgba(251, 191, 36, 0.15); border-radius: 14px; padding: 18px 20px; }
+        .important-box p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+        .important-box .tag { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 500; color: var(--accent-yellow); background: rgba(251, 191, 36, 0.12); padding: 3px 10px; border-radius: 6px; margin-bottom: 10px; }
+        .penalty-box { margin-top: 30px; background: rgba(248, 113, 113, 0.05); border: 1px solid rgba(248, 113, 113, 0.15); border-radius: 14px; padding: 24px; }
+        .penalty-box h4 { font-size: 0.85rem; font-weight: 600; color: var(--accent-red); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .penalty-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+        .penalty-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: rgba(0, 0, 0, 0.2); border-radius: 10px; font-size: 0.82rem; color: var(--text-muted); }
+        .penalty-item .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; padding: 2px 8px; border-radius: 5px; font-weight: 500; flex-shrink: 0; }
         .tag.warn { background: rgba(251, 191, 36, 0.2); color: var(--accent-yellow); }
         .tag.kick { background: rgba(96, 165, 250, 0.2); color: var(--accent-blue); }
         .tag.ban { background: rgba(248, 113, 113, 0.2); color: var(--accent-red); }
         .tag.perm { background: rgba(248, 113, 113, 0.3); color: #fca5a5; }
-
-        /* === FOOTER === */
-        .footer {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer p {
-            color: var(--text-dim);
-            font-size: 0.8rem;
-        }
-
-        .footer a {
-            color: var(--primary-light);
-            text-decoration: none;
-        }
-
-        .footer .discord-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 16px;
-            padding: 12px 28px;
-            background: var(--primary);
-            color: white;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .footer .discord-btn:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--primary-glow);
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 600px) {
-            .hero { padding: 60px 16px 40px; }
-            .hero-stats { gap: 24px; }
-            .container { padding: 30px 16px 60px; }
-            .toc { padding: 20px; }
-            .penalty-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 1.1rem; }
-        }
-
-        /* === SCROLL ANIMATIONS === */
-        .rule-section {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        .rule-section.visible {
-            animation: fadeUp 0.5s ease both;
-        }
+        .weapon-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .weapon-tag { background: rgba(70, 26, 128, 0.15); border: 1px solid rgba(70, 26, 128, 0.25); color: var(--primary-light); padding: 5px 14px; border-radius: 100px; font-size: 0.78rem; font-weight: 500; }
+        .footer { position: relative; z-index: 1; text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); }
+        .footer p { color: var(--text-dim); font-size: 0.8rem; }
+        .footer a { color: var(--primary-light); text-decoration: none; }
+        .footer .discord-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 12px 28px; background: var(--primary); color: white; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; }
+        .footer .discord-btn:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 8px 30px var(--primary-glow); }
+        @media (max-width: 600px) { .hero { padding: 60px 16px 40px; } .hero-stats { gap: 24px; } .container { padding: 30px 16px 60px; } .toc { padding: 20px; } .toc-grid { grid-template-columns: 1fr; } .penalty-grid { grid-template-columns: 1fr; } .section-title { font-size: 1.1rem; } }
+        .rule-section { opacity: 0; transform: translateY(20px); }
+        .rule-section.visible { animation: fadeUp 0.5s ease both; }
     </style>
 </head>
 <body>
-
-    <!-- HERO -->
     <section class="hero">
-        <div class="hero-badge">
-            <i class="fa-solid fa-circle"></i>
-            REGULAMENTO OFICIAL
-        </div>
-        <h1>Regras do <span>Haven</span></h1>
-        <p>Leia com atenção todas as regras antes de entrar na cidade. O descumprimento pode resultar em punições.</p>
+        <div class="hero-badge"><i class="fa-solid fa-circle"></i> REGULAMENTO OFICIAL</div>
+        <h1>Regras da <span>Haven</span></h1>
+        <p>Leia com atenção todas as regras antes de entrar na cidade. O descumprimento resultará em punições. Bom senso é o critério soberano.</p>
         <div class="hero-stats">
-            <div class="hero-stat">
-                <div class="number">7</div>
-                <div class="label">Categorias</div>
-            </div>
-            <div class="hero-stat">
-                <div class="number">30+</div>
-                <div class="label">Regras</div>
-            </div>
-            <div class="hero-stat">
-                <div class="number">24/7</div>
-                <div class="label">Staff Ativa</div>
-            </div>
+            <div class="hero-stat"><div class="number">12</div><div class="label">Categorias</div></div>
+            <div class="hero-stat"><div class="number">70+</div><div class="label">Regras</div></div>
+            <div class="hero-stat"><div class="number">24/7</div><div class="label">Staff Ativa</div></div>
         </div>
     </section>
-
-    <!-- CONTENT -->
     <div class="container">
-
-        <!-- TABLE OF CONTENTS -->
         <nav class="toc">
             <h3>Índice</h3>
             <div class="toc-grid">
-                <a href="#geral"><span class="toc-num">01</span> Regras Gerais</a>
-                <a href="#rp"><span class="toc-num">02</span> Roleplay</a>
-                <a href="#combate"><span class="toc-num">03</span> Combate e Crimes</a>
-                <a href="#veiculos"><span class="toc-num">04</span> Veículos</a>
-                <a href="#policia"><span class="toc-num">05</span> Polícia e SAMU</a>
-                <a href="#chat"><span class="toc-num">06</span> Chat e Comunicação</a>
-                <a href="#punicoes"><span class="toc-num">07</span> Punições</a>
+                <a href="#pilares"><span class="toc-num">01</span> Pilares do RP e Conduta</a>
+                <a href="#integridade"><span class="toc-num">02</span> Integridade e Fair Play</a>
+                <a href="#mecanicas"><span class="toc-num">03</span> Mecânicas de Jogo</a>
+                <a href="#fear"><span class="toc-num">04</span> Valorização da Vida</a>
+                <a href="#combatlog"><span class="toc-num">05</span> Combat Logging</a>
+                <a href="#medico"><span class="toc-num">06</span> Atendimento Médico</a>
+                <a href="#estilo"><span class="toc-num">07</span> Estilo de Interpretação</a>
+                <a href="#acoes"><span class="toc-num">08</span> Ações e Combate</a>
+                <a href="#pichacao"><span class="toc-num">09</span> Regras de Pichação</a>
+                <a href="#conflitos"><span class="toc-num">10</span> Conflitos entre Organizações</a>
+                <a href="#driveby"><span class="toc-num">11</span> Drive-By e Invasão</a>
+                <a href="#denuncia"><span class="toc-num">12</span> Sistema de Denúncia</a>
             </div>
         </nav>
 
-        <!-- 01 — REGRAS GERAIS -->
-        <section class="rule-section" id="geral">
+        <section class="rule-section" id="pilares">
             <div class="section-header">
                 <div class="section-icon purple"><i class="fa-solid fa-scale-balanced"></i></div>
-                <div>
-                    <div class="section-title">Regras Gerais</div>
-                    <div class="section-subtitle">Comportamento e conduta básica</div>
-                </div>
+                <div><div class="section-title">Pilares do Roleplay e Conduta</div><div class="section-subtitle">Comportamento e respeito</div></div>
             </div>
             <ul class="rules-list">
-                <li><span class="rule-num">1.1</span> Respeite todos os jogadores e membros da staff. Ofensas, preconceito, racismo e qualquer tipo de discriminação resultarão em banimento permanente.</li>
-                <li><span class="rule-num">1.2</span> É proibido o uso de hacks, mods, trainers ou qualquer software que dê vantagem injusta.</li>
-                <li><span class="rule-num">1.3</span> Não é permitido explorar bugs do servidor. Se encontrar um bug, reporte no Discord.</li>
-                <li><span class="rule-num">1.4</span> É proibido divulgar outros servidores dentro do Haven.</li>
-                <li><span class="rule-num">1.5</span> Contas são pessoais e intransferíveis. Compartilhar contas pode resultar em banimento.</li>
-                <li><span class="rule-num">1.6</span> A staff tem a palavra final em qualquer situação. Decisões podem ser contestadas por ticket no Discord.</li>
+                <li><span class="rule-num">1.1</span> <strong>Bom Senso e Interpretação:</strong> O bom senso é o critério soberano para o julgamento da Staff. É obrigatório manter a interpretação do personagem (In-Character) o tempo todo, garantindo imersão e coerência narrativa.</li>
+                <li><span class="rule-num">1.2</span> <strong>Respeito e Tolerância Zero:</strong> O respeito entre jogadores e administradores é inegociável. Práticas de discriminação, racismo, homofobia ou assédio resultam em punições severas.</li>
+                <li><span class="rule-num">1.3</span> <strong>Proibição de Dark RP:</strong> Conteúdos excessivamente pesados ou abusivos (Dark RP) são estritamente proibidos.</li>
             </ul>
         </section>
 
-        <!-- 02 — ROLEPLAY -->
-        <section class="rule-section" id="rp">
+        <section class="rule-section" id="integridade">
             <div class="section-header">
-                <div class="section-icon green"><i class="fa-solid fa-masks-theater"></i></div>
-                <div>
-                    <div class="section-title">Roleplay</div>
-                    <div class="section-subtitle">Interpretação de personagem</div>
-                </div>
+                <div class="section-icon red"><i class="fa-solid fa-shield-halved"></i></div>
+                <div><div class="section-title">Integridade Técnica e Fair Play</div><div class="section-subtitle">Anti-cheat e exploits</div></div>
             </div>
             <ul class="rules-list">
-                <li><span class="rule-num">2.1</span> Mantenha o RP em todos os momentos. Sair do personagem sem motivo (quebra de RP) será punido.</li>
-                <li><span class="rule-num">2.2</span> <strong>Metagaming</strong> é proibido — não use informações obtidas fora do jogo (Discord, streams, etc.) dentro do RP.</li>
-                <li><span class="rule-num">2.3</span> <strong>Powergaming</strong> é proibido — não force ações impossíveis ou que não deem chance de reação ao outro jogador.</li>
-                <li><span class="rule-num">2.4</span> Ao ser "abatido", você deve interpretar o ferimento. Não pode lembrar quem te atacou (regra de New Life / NLR).</li>
-                <li><span class="rule-num">2.5</span> É obrigatório ter um nome realista para seu personagem. Nomes de famosos, memes ou ofensivos não são permitidos.</li>
-                <li><span class="rule-num">2.6</span> <strong>FailRP</strong> — Não realize ações que seu personagem não faria na vida real (pular de prédios, correr atropelado, etc.).</li>
+                <li><span class="rule-num">2.1</span> <strong>Exploits e Bugs:</strong> É proibido aproveitar-se de falhas do sistema (glitches) para benefício próprio. Qualquer erro detectado deve ser reportado imediatamente à Staff.</li>
+                <li><span class="rule-num">2.2</span> <strong>Vantagens Indevidas (Cheats):</strong> O uso de modificações gráficas ou arquivos que alterem o equilíbrio do jogo (como remoção de objetos do mapa ou assistência de mira) é tratado como uso de hack e resulta em banimento imediato.</li>
+                <li><span class="rule-num">2.3</span> <strong>Sistema de Telagem:</strong> Sob suspeita, a Staff pode solicitar a verificação remota (telagem) do computador do jogador. A recusa pode ser interpretada como ocultação de provas e levar ao banimento permanente.</li>
             </ul>
         </section>
 
-        <!-- 03 — COMBATE E CRIMES -->
-        <section class="rule-section" id="combate">
+        <section class="rule-section" id="mecanicas">
             <div class="section-header">
-                <div class="section-icon red"><i class="fa-solid fa-crosshairs"></i></div>
-                <div>
-                    <div class="section-title">Combate e Crimes</div>
-                    <div class="section-subtitle">Regras de confronto</div>
-                </div>
+                <div class="section-icon green"><i class="fa-solid fa-brain"></i></div>
+                <div><div class="section-title">Mecânicas de Jogo e Memória</div><div class="section-subtitle">NLR, provas e safe-zones</div></div>
             </div>
             <ul class="rules-list">
-                <li><span class="rule-num">3.1</span> <strong>RDM (Random Deathmatch)</strong> é proibido — não mate jogadores sem motivo ou interação de RP prévia.</li>
-                <li><span class="rule-num">3.2</span> <strong>VDM (Vehicle Deathmatch)</strong> é proibido — não use veículos como arma para atropelar jogadores intencionalmente.</li>
-                <li><span class="rule-num">3.3</span> Assaltos exigem no mínimo 2 policiais online. Sequestros exigem no mínimo 4.</li>
-                <li><span class="rule-num">3.4</span> O limite máximo para ações criminosas em grupo é de 5 pessoas.</li>
-                <li><span class="rule-num">3.5</span> Zonas seguras (hospitais, delegacias, garagens) não podem ser usadas para iniciar ou fugir de confrontos.</li>
-                <li><span class="rule-num">3.6</span> É proibido combat logging — desconectar durante uma situação de RP para evitar consequências.</li>
+                <li><span class="rule-num">3.1</span> <strong>Regra de Esquecimento (NLR):</strong> Se o seu personagem "morrer" (hospitalizado/sem pulso), você deve esquecer os eventos que levaram ao fato e os 30 minutos anteriores. É proibido dar dicas a terceiros sobre esses eventos.</li>
+                <li><span class="rule-num">3.2</span> <strong>Validade de Provas:</strong> No RP, apenas fotos e vídeos feitos com itens do jogo (celular, câmeras, action cams) são aceitos como prova narrativa.</li>
+                <li><span class="rule-num">3.3</span> <strong>Safe-Zones:</strong> Locais como hospitais, garagens principais e estabelecimentos registrados são zonas seguras contra ações agressivas, exceto para foragidos em fuga ou em casos de furtos sem violência.</li>
             </ul>
         </section>
 
-        <!-- 04 — VEÍCULOS -->
-        <section class="rule-section" id="veiculos">
+        <section class="rule-section" id="fear">
             <div class="section-header">
-                <div class="section-icon yellow"><i class="fa-solid fa-car"></i></div>
-                <div>
-                    <div class="section-title">Veículos</div>
-                    <div class="section-subtitle">Trânsito e condução</div>
-                </div>
+                <div class="section-icon yellow"><i class="fa-solid fa-heart-pulse"></i></div>
+                <div><div class="section-title">Valorização da Vida (Fear RP)</div><div class="section-subtitle">Medo realista</div></div>
             </div>
             <ul class="rules-list">
-                <li><span class="rule-num">4.1</span> Respeite as leis de trânsito durante o RP. Dirija na mão correta e pare nos sinais.</li>
-                <li><span class="rule-num">4.2</span> Não estacione veículos em locais que bloqueiem a passagem ou atrapalhem outros jogadores.</li>
-                <li><span class="rule-num">4.3</span> Perseguições policiais devem ser realistas. Não dirija em locais impossíveis (montanhas, trilhos, etc.).</li>
-                <li><span class="rule-num">4.4</span> É proibido usar veículos aéreos (helicópteros/aviões) sem autorização de RP.</li>
+                <li><span class="rule-num">4.1</span> O personagem deve agir com medo realista quando sua vida estiver sob ameaça direta (ex: uma arma apontada para a cabeça). Não reagir de forma realista ao perigo é considerado quebra de Fear RP.</li>
             </ul>
         </section>
 
-        <!-- 05 — POLÍCIA E SAMU -->
-        <section class="rule-section" id="policia">
+        <section class="rule-section" id="combatlog">
             <div class="section-header">
-                <div class="section-icon blue"><i class="fa-solid fa-shield-halved"></i></div>
-                <div>
-                    <div class="section-title">Polícia e SAMU</div>
-                    <div class="section-subtitle">Forças públicas</div>
-                </div>
+                <div class="section-icon red"><i class="fa-solid fa-plug-circle-xmark"></i></div>
+                <div><div class="section-title">Combat Logging e Quedas Técnicas</div><div class="section-subtitle">Desconexão durante ações</div></div>
             </div>
             <ul class="rules-list">
-                <li><span class="rule-num">5.1</span> Policiais devem seguir o protocolo e a hierarquia da corporação.</li>
-                <li><span class="rule-num">5.2</span> Médicos do SAMU são neutros — não podem ser sequestrados ou mortos durante atendimentos.</li>
-                <li><span class="rule-num">5.3</span> É proibido corrupção policial sem aprovação prévia da staff.</li>
-                <li><span class="rule-num">5.4</span> Policiais fora de serviço não podem usar equipamento policial.</li>
+                <li><span class="rule-num">5.1</span> Deslogar durante uma ação é proibido (combat logging).</li>
+                <li><span class="rule-num">5.2</span> Existe um canal específico no Discord (<strong>"Quedas"</strong>) onde o jogador tem até <strong>15 minutos</strong> para postar um print do erro técnico para evitar punição imediata.</li>
             </ul>
         </section>
 
-        <!-- 06 — CHAT -->
-        <section class="rule-section" id="chat">
+        <section class="rule-section" id="medico">
             <div class="section-header">
-                <div class="section-icon purple"><i class="fa-solid fa-comments"></i></div>
-                <div>
-                    <div class="section-title">Chat e Comunicação</div>
-                    <div class="section-subtitle">Uso do chat e microfone</div>
-                </div>
+                <div class="section-icon cyan"><i class="fa-solid fa-truck-medical"></i></div>
+                <div><div class="section-title">Prioridade de Atendimento Médico</div><div class="section-subtitle">Proteção aos paramédicos</div></div>
             </div>
             <ul class="rules-list">
-                <li><span class="rule-num">6.1</span> Mantenha o microfone em qualidade aceitável. Sem ruídos excessivos ou música.</li>
-                <li><span class="rule-num">6.2</span> Não faça spam no chat do servidor.</li>
-                <li><span class="rule-num">6.3</span> O chat OOC (fora do personagem) deve ser usado apenas para assuntos essenciais.</li>
-                <li><span class="rule-num">6.4</span> É proibido usar voice changers para atrapalhar o RP de outros jogadores.</li>
+                <li><span class="rule-num">6.1</span> É proibido sequestrar ou cobrar paramédicos em serviço.</li>
+                <li><span class="rule-num">6.2</span> É proibido saquear (loot) itens médicos (kits médicos, bandagens) de profissionais em serviço, garantindo que o hospital sempre tenha recursos para atender a cidade.</li>
             </ul>
         </section>
 
-        <!-- 07 — PUNIÇÕES -->
-        <section class="rule-section" id="punicoes">
+        <section class="rule-section" id="estilo">
             <div class="section-header">
-                <div class="section-icon red"><i class="fa-solid fa-gavel"></i></div>
-                <div>
-                    <div class="section-title">Punições</div>
-                    <div class="section-subtitle">Consequências por infrações</div>
-                </div>
+                <div class="section-icon blue"><i class="fa-solid fa-masks-theater"></i></div>
+                <div><div class="section-title">Estilo de Interpretação (Low Fantasy)</div><div class="section-subtitle">Realismo e coerência</div></div>
             </div>
-            <div class="penalty-box">
-                <h4><i class="fa-solid fa-triangle-exclamation"></i> Tabela de Punições</h4>
-                <div class="penalty-grid">
-                    <div class="penalty-item"><span class="tag warn">AVISO</span> Quebra de RP leve</div>
-                    <div class="penalty-item"><span class="tag warn">AVISO</span> Desrespeito no chat</div>
-                    <div class="penalty-item"><span class="tag kick">KICK</span> FailRP repetido</div>
-                    <div class="penalty-item"><span class="tag kick">KICK</span> Metagaming</div>
-                    <div class="penalty-item"><span class="tag ban">BAN 3D</span> RDM / VDM</div>
-                    <div class="penalty-item"><span class="tag ban">BAN 7D</span> Combat logging</div>
-                    <div class="penalty-item"><span class="tag perm">PERM</span> Hack / Cheats</div>
-                    <div class="penalty-item"><span class="tag perm">PERM</span> Racismo / Preconceito</div>
-                </div>
+            <ul class="rules-list">
+                <li><span class="rule-num">7.1</span> O servidor foca na vida real. <strong>Sem Magia:</strong> nada de poderes, criaturas místicas ou eventos sobrenaturais. <strong>Pés no Chão:</strong> aja como uma pessoa comum em um mundo comum.</li>
+                <li><span class="rule-num">7.2</span> <strong>Ajustes da Staff:</strong> Se a administração pedir para mudar seu nome ou ajustar sua forma de agir, não leve para o lado pessoal. Basta fazer a correção para continuar jogando.</li>
+            </ul>
+        </section>
+
+        <section class="rule-section" id="acoes">
+            <div class="section-header">
+                <div class="section-icon orange"><i class="fa-solid fa-crosshairs"></i></div>
+                <div><div class="section-title">Ações e Combate</div><div class="section-subtitle">Diretrizes de confronto</div></div>
+            </div>
+            <div class="sub-title">Diretrizes de Combate e Conduta</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">8.1</span> <strong>Restrição de Reanimação:</strong> É proibido o uso de Kit Médico para levantar aliados durante ações pré-programadas.</li>
+                <li><span class="rule-num">8.2</span> <strong>Logística de Fuga:</strong> Criminosos devem utilizar apenas os veículos envolvidos no início da cena. O uso de carros externos para fugas é proibido.</li>
+                <li><span class="rule-num">8.3</span> <strong>Exclusividade da Ação:</strong> Ações pré-programadas são confrontos diretos entre Ilegal vs. Polícia. Nenhuma organização externa pode intervir.</li>
+                <li><span class="rule-num">8.4</span> <strong>Integridade do Sistema:</strong> É proibido o uso de bugs, macros ou comandos para cancelar ou acelerar animações de recarregamento de armas.</li>
+            </ul>
+            <div class="sub-title">Regras de Perímetro</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">8.5</span> Mantenha-se dentro da área da ação assim que ela começar. Se iniciada fora do perímetro marcado, será considerada "ação de rua" e a polícia poderá agir com força total.</li>
+            </ul>
+            <div class="sub-title">Gravação de Tela</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">8.6</span> É <strong>obrigatório</strong> gravar toda a sua atividade no servidor. Os arquivos devem ser mantidos por pelo menos <strong>72 horas</strong>. Sem gravação para se defender, estará sujeito a advertências ou banimento.</li>
+            </ul>
+            <div class="sub-title">Sequestro Policial</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">8.7</span> O sequestro só poderá acontecer com contexto: Resgate, Cobrança ou Informação.</li>
+            </ul>
+            <div class="sub-title">Cobranças</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">8.8</span> Não é necessário policiais em patrulha para realizar cobranças.</li>
+                <li><span class="rule-num">8.9</span> Deve-se explicar o motivo da morte e em seguida finalizar, caso contrário será considerado RDM.</li>
+            </ul>
+            <div class="sub-title">Ações de Rua</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">8.10</span> Todos os policiais em serviço podem ir na ação. Poder de arma livre.</li>
+                <li><span class="rule-num">8.11</span> Ao morrer ou cair, não poderá voltar para o local da ação.</li>
+                <li><span class="rule-num">8.12</span> Policiais só podem lootear itens ilegais quando estiverem na DP.</li>
+                <li><span class="rule-num">8.13</span> Pessoa que desmaiar durante cobrança, sequestro ou tortura NÃO pode ser reanimada para continuidade do RP. Morreu, esqueceu.</li>
+            </ul>
+        </section>
+
+        <section class="rule-section" id="pichacao">
+            <div class="section-header">
+                <div class="section-icon pink"><i class="fa-solid fa-spray-can"></i></div>
+                <div><div class="section-title">Regras de Pichação</div><div class="section-subtitle">Territorial e gang RP</div></div>
+            </div>
+            <div class="sub-title">Armas Permitidas na Pichação</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">9.1</span> O uso de armas brancas é restrito exclusivamente às armas listadas abaixo. O grupo atacante nunca poderá utilizar armas além destas.</li>
+            </ul>
+            <div class="weapon-list">
+                <span class="weapon-tag">Soco Inglês</span>
+                <span class="weapon-tag">Taco de Baseball</span>
+                <span class="weapon-tag">Taco de Golfe</span>
+                <span class="weapon-tag">Taco de Sinuca</span>
+                <span class="weapon-tag">Garrafa Quebrada</span>
+                <span class="weapon-tag">Pé de Cabra</span>
+                <span class="weapon-tag">Chave Inglesa</span>
+            </div>
+            <div class="sub-title" style="margin-top: 24px;">Regras Gerais da Pichação</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">9.2</span> <strong>Loot:</strong> Permitido em qualquer resolução de pichação, respeitando bom senso e coerência.</li>
+                <li><span class="rule-num">9.3</span> <strong>Combate Corpo a Corpo:</strong> Por opção mútua, pichador e defensor podem optar por mãos livres, sem armas.</li>
+                <li><span class="rule-num">9.4</span> <strong>Veículos:</strong> Pichações devem usar obrigatoriamente low-riders ou BMX, caracterizados com as cores do gueto. Furto de low-riders é permitido durante a ação, mas o veículo deve ser descartado após.</li>
+                <li><span class="rule-num">9.5</span> <strong>Limitação:</strong> É proibido iniciar cobranças, sequestros ou ações secundárias a partir de uma pichação. A ação começa e termina na pichação.</li>
+                <li><span class="rule-num">9.6</span> <strong>Identificação Visual:</strong> Todos devem estar claramente caracterizados com as cores do seu gueto.</li>
+                <li><span class="rule-num">9.7</span> <strong>Imersão:</strong> Todos devem manter linguagem e comportamento compatíveis com a temática americana de gangs. Proibido usar pichação como justificativa para PvP sem RP.</li>
+                <li><span class="rule-num">9.8</span> <strong>Duração:</strong> A ação deve ter início, desenvolvimento e encerramento claros. Proibido prolongar conflitos de forma proposital.</li>
+                <li><span class="rule-num">9.9</span> <strong>Interferência Policial:</strong> Caso haja intervenção policial, a situação deve ser conduzida normalmente dentro do RP.</li>
+                <li><span class="rule-num">9.10</span> <strong>Anti-Abuso:</strong> Proibido repetir pichações no mesmo local em curto período ou usar como pretexto para ações fora do contexto.</li>
+            </ul>
+        </section>
+
+        <section class="rule-section" id="conflitos">
+            <div class="section-header">
+                <div class="section-icon red"><i class="fa-solid fa-skull-crossbones"></i></div>
+                <div><div class="section-title">Conflitos entre Organizações</div><div class="section-subtitle">Guerras, conduta e caracterização</div></div>
+            </div>
+            <div class="sub-title">Declaração de Conflito</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">10.1</span> Qualquer declaração de conflito deve possuir motivação sólida, plausível e bem construída. Não serão aceitas justificativas rasas como discussões no trânsito ou provocações sem continuidade.</li>
+                <li><span class="rule-num">10.2</span> Conflitos devem surgir de interesses concretos: disputas por território, controle de negócios, vingança, quebra de acordos, traições ou alianças rompidas.</li>
+            </ul>
+            <div class="sub-title">Conduta no RP Ilegal</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">10.3</span> Atividades ilegais devem ser interpretadas com maturidade e foco na imersão. Toda prática criminosa precisa de contexto, planejamento e riscos plausíveis. Atitudes impulsivas ou para obtenção de vantagem mecânica não serão toleradas.</li>
+            </ul>
+            <div class="sub-title">Regra de Guerra entre Facções</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">10.4</span> A guerra deve ser precedida por conflitos progressivos, tentativas de negociação, ameaças e disputas de interesse.</li>
+                <li><span class="rule-num">10.5</span> A declaração de guerra deve ser clara e inconfundível. Emboscadas aleatórias ou ataques sem construção prévia são quebra de regra.</li>
+                <li><span class="rule-num">10.6</span> Durante a guerra, foco na imersão e na geração de história, não apenas confronto constante.</li>
+                <li><span class="rule-num">10.7</span> Após a guerra, consequências permanecem válidas: perda temporária de 2 dias do território, vinganças futuras ou novos acordos.</li>
+            </ul>
+            <div class="sub-title">Caracterização e Postura das Organizações</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">10.8</span> Membros de guetos, máfias, motoclubes e demais organizações devem interpretar seus personagens de forma fiel à cultura, hierarquia e identidade do grupo.</li>
+                <li><span class="rule-num">10.9</span> Não será tolerada quebra de personagem ou comportamentos que prejudiquem a imersão.</li>
+            </ul>
+        </section>
+
+        <section class="rule-section" id="driveby">
+            <div class="section-header">
+                <div class="section-icon orange"><i class="fa-solid fa-car-burst"></i></div>
+                <div><div class="section-title">Drive-By e Invasão</div><div class="section-subtitle">Regras de ataque motorizado e territorial</div></div>
+            </div>
+            <div class="sub-title">Regras de Drive-By</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">11.1</span> Drive-By é proibido fora de guerras ativas entre facções. Disparos de dentro de veículos só são permitidos com conflito ativo.</li>
+                <li><span class="rule-num">11.2</span> Drive-By não pode ser usado para finalizar RP rapidamente. O objetivo deve ser gerar continuação da história.</li>
+                <li><span class="rule-num">11.3</span> Proibido contra civis, trabalhadores ou jogadores sem envolvimento direto em conflito.</li>
+                <li><span class="rule-num">11.4</span> Drive-By não pode ser a primeira agressão. Deve existir provocação, ameaça ou confronto anterior.</li>
+                <li><span class="rule-num">11.5</span> Proibido spam de Drive-By (ficar passando repetidamente em frente a HQs para atirar).</li>
+            </ul>
+            <div class="sub-title">Regras de Invasão</div>
+            <ul class="rules-list">
+                <li><span class="rule-num">11.6</span> <strong>Negociação Prévia (Obrigatória):</strong> Os líderes devem realizar RP de negociação com pelo menos <strong>20 minutos</strong> de antecedência, definindo participantes e armamentos.</li>
+                <li><span class="rule-num">11.7</span> Apenas as armas de fogo combinadas entre os líderes poderão ser utilizadas.</li>
+                <li><span class="rule-num">11.8</span> A ordem de invasão deve partir exclusivamente do líder da gangue invasora.</li>
+                <li><span class="rule-num">11.9</span> Todos os membros devem estar visivelmente identificados com cores/roupas da gangue.</li>
+                <li><span class="rule-num">11.10</span> Apenas membros oficiais podem participar. Proibido "setar" novos membros antes da invasão para reforçar o grupo.</li>
+                <li><span class="rule-num">11.11</span> Se a gangue invadida não tiver membros presentes, a invasão é inválida e pode ser reagendada.</li>
+                <li><span class="rule-num">11.12</span> <strong>Cooldown:</strong> Após confronto armado, nova tentativa só após <strong>7 dias</strong>.</li>
+                <li><span class="rule-num">11.13</span> A polícia pode intervir apenas após o encerramento da invasão para pacificar a área.</li>
+            </ul>
+        </section>
+
+        <section class="rule-section" id="denuncia">
+            <div class="section-header">
+                <div class="section-icon purple"><i class="fa-solid fa-ticket"></i></div>
+                <div><div class="section-title">Sistema de Denúncia</div><div class="section-subtitle">Como reportar irregularidades</div></div>
+            </div>
+            <ul class="rules-list">
+                <li><span class="rule-num">12.1</span> Não há obrigatoriedade de resposta em conversas particulares. Sua mensagem pode ser ignorada ou esquecida.</li>
+                <li><span class="rule-num">12.2</span> Para suporte eficiente e registrado, utilize exclusivamente o sistema oficial de tickets no Discord.</li>
+            </ul>
+            <div class="important-box">
+                <div class="tag"><i class="fa-solid fa-circle-info"></i> IMPORTANTE</div>
+                <p>Todas as denúncias e solicitações de suporte devem ser feitas através do sistema de tickets no Discord do servidor. Abra um ticket para garantir que seu caso seja analisado pela Staff.</p>
             </div>
         </section>
 
+        <div class="penalty-box">
+            <h4><i class="fa-solid fa-triangle-exclamation"></i> Tabela de Punições</h4>
+            <div class="penalty-grid">
+                <div class="penalty-item"><span class="tag warn">AVISO</span> Quebra de RP leve</div>
+                <div class="penalty-item"><span class="tag warn">AVISO</span> Desrespeito no chat</div>
+                <div class="penalty-item"><span class="tag kick">KICK</span> FailRP repetido</div>
+                <div class="penalty-item"><span class="tag kick">KICK</span> Metagaming</div>
+                <div class="penalty-item"><span class="tag ban">BAN 3D</span> RDM / VDM</div>
+                <div class="penalty-item"><span class="tag ban">BAN 7D</span> Combat Logging</div>
+                <div class="penalty-item"><span class="tag ban">BAN 7D</span> Exploit de Bugs</div>
+                <div class="penalty-item"><span class="tag perm">PERM</span> Hack / Cheats</div>
+                <div class="penalty-item"><span class="tag perm">PERM</span> Racismo / Discriminação</div>
+                <div class="penalty-item"><span class="tag perm">PERM</span> Recusa de Telagem</div>
+            </div>
+        </div>
     </div>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <p>Haven RP — Todos os direitos reservados © 2026</p>
         <a href="https://discord.gg/cityhaven" class="discord-btn" target="_blank">
@@ -594,7 +401,6 @@
     </footer>
 
     <script>
-        // Scroll animation observer
         const sections = document.querySelectorAll('.rule-section');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, i) => {
@@ -605,10 +411,7 @@
                 }
             });
         }, { threshold: 0.1 });
-
         sections.forEach(s => observer.observe(s));
-
-        // Smooth scroll for TOC links
         document.querySelectorAll('.toc a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
